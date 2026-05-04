@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Billiards Pool Game - Free Online Physics Simulator</title>
+    <title>Web Billiards Simulator</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta
       name="description"
-      content="Play free online billiards with realistic physics. Open source and browser-based pool game with multiplayer support. Playable on desktop and mobile."
+      content="Browser-based billiards physics game with WebGL. Includes pool, snooker, and three-cushion modes. Adapted from tailuge/billiards."
     />
     <meta
       name="keywords"
@@ -23,11 +23,11 @@
     <link rel="canonical" href="https://tailuge.github.io/billiards/dist/" />
     <meta
       property="og:title"
-      content="Billiards Pool Game - Free Online Physics Simulator"
+      content="Web Billiards Simulator"
     />
     <meta
       property="og:description"
-      content="Play realistic pool online with accurate physics. Open source billiards simulation in your browser."
+      content="Browser-based billiards physics game with WebGL. Includes pool, snooker, and three-cushion modes."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -45,11 +45,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Billiards Pool and Snooker Game - Free"
+      content="Web Billiards Simulator"
     />
     <meta
       name="twitter:description"
-      content="Play realistic pool online with accurate physics simulation. Open source and browser-based."
+      content="Browser-based billiards physics game with WebGL, adapted from tailuge/billiards."
     />
     <script type="application/ld+json">
       {
@@ -91,10 +91,157 @@
     <link rel="stylesheet" type="text/css" href="css/lobby.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <link rel="stylesheet" type="text/css" href="css/wood.css" />
+    <style>
+      .site-menu {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 3000;
+        width: min(380px, calc(100vw - 24px));
+        max-height: calc(100dvh - 24px);
+        overflow: auto;
+        color: #f7f1df;
+        background: rgb(6 12 14 / 82%);
+        border: 1px solid rgb(255 255 255 / 16%);
+        border-radius: 8px;
+        box-shadow: 0 16px 40px rgb(0 0 0 / 35%);
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        pointer-events: auto;
+      }
+
+      .site-menu summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 12px 14px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .site-menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .site-menu[open] summary {
+        border-bottom: 1px solid rgb(255 255 255 / 12%);
+      }
+
+      .site-menu__body {
+        padding: 14px;
+      }
+
+      .site-menu h1 {
+        font-size: 22px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+        color: #fff;
+      }
+
+      .site-menu p,
+      .site-menu li {
+        margin: 0;
+        color: #dccfb9;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .site-menu ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+      }
+
+      .mode-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin: 14px 0;
+      }
+
+      .mode-links a {
+        display: block;
+        min-height: 38px;
+        padding: 9px 11px;
+        border: 1px solid rgb(255 255 255 / 18%);
+        border-radius: 6px;
+        background: rgb(255 255 255 / 8%);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 650;
+      }
+
+      .mode-links a:hover,
+      .mode-links a:focus-visible {
+        background: rgb(255 255 255 / 16%);
+      }
+
+      .site-menu h2 {
+        margin: 14px 0 8px;
+        color: #fff;
+        font-size: 15px;
+      }
+
+      .site-menu code {
+        color: #fff;
+        font-family:
+          "Segoe UI Mono",
+          Consolas,
+          monospace;
+      }
+
+      .site-menu .note {
+        margin-top: 10px;
+        color: #c8b38f;
+        font-size: 13px;
+      }
+
+      @media (max-width: 680px) {
+        .site-menu {
+          top: 8px;
+          left: 8px;
+          width: calc(100vw - 16px);
+        }
+
+        .site-menu[open] {
+          max-height: 58dvh;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <h1 hidden>Free Pool, Billiards and Snooker</h1>
+    <details class="site-menu" open>
+      <summary>Web Billiards Simulator - Menu</summary>
+      <div class="site-menu__body">
+        <h1>Web Billiards Simulator</h1>
+        <p>Browser-based billiards physics game with WebGL.</p>
+        <ul>
+          <li>Includes pool, snooker, and three-cushion modes.</li>
+          <li>Adapted from tailuge/billiards.</li>
+        </ul>
+        <nav class="mode-links" aria-label="Game modes">
+          <a href="index.html?ruletype=nineball">Play Nine Ball</a>
+          <a href="index.html?ruletype=snooker">Play Snooker</a>
+          <a href="index.html?ruletype=threecushion">Play Three Cushion</a>
+          <a href="diagrams/diagrams.html">Physics Demo / Diagrams</a>
+          <a href="multi.html">Online modes - experimental, requires external server</a>
+        </nav>
+        <h2>Controls / Help</h2>
+        <ul>
+          <li><code>Arrow keys</code>: aim</li>
+          <li><code>Ctrl + Arrow</code>: fine aim</li>
+          <li><code>Up / Down</code>: top spin and backspin</li>
+          <li><code>Shift + Left / Right</code>: side spin</li>
+          <li><code>Space</code>: hold and release to hit</li>
+          <li>Mouse or touch drag on the table adjusts aim where supported.</li>
+          <li>Use the cue ball control and power slider for spin and shot strength.</li>
+        </ul>
+        <p class="note">Close this panel to play. The default mode is Nine Ball.</p>
+      </div>
+    </details>
+    <h1 hidden>Web Billiards Simulator</h1>
     <div id="viewP1" class="view3d">
       <div id="snookerScoreOverlay">
         <div id="snookerScore" aria-live="polite">

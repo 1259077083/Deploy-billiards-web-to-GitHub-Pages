@@ -3067,9 +3067,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"billiards@workspace:.":
+"billiards-web-adapted@workspace:.":
   version: 0.0.0-use.local
-  resolution: "billiards@workspace:."
+  resolution: "billiards-web-adapted@workspace:."
   dependencies:
     "@eslint/js": "npm:10.0.1"
     "@swc/core": "npm:1.15.33"

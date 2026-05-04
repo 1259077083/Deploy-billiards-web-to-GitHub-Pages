@@ -7,6 +7,11 @@ module.exports = {
     mathavan: "./src/mathavan.ts",
     compare: "./src/compare.ts",
   },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].js",
+    publicPath: process.env.WEBPACK_PUBLIC_PATH || "auto",
+  },
   module: {
     rules: [
       {

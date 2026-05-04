@@ -1,3 +1,132 @@
+# Web Billiards Simulator
+
+This project is adapted from [tailuge/billiards](https://github.com/tailuge/billiards).
+It keeps the original TypeScript physics, rules, WebGL rendering, and GPL-3.0
+licensing, while adding a static-friendly entry page and GitHub Pages deployment
+workflow.
+
+## Attribution
+
+Original project: <https://github.com/tailuge/billiards>
+
+Original author: tailuge
+
+This adapted project preserves the original `LICENSE` file and the original
+README attribution below.
+
+## License
+
+GPL-3.0, inherited from the original project. See [LICENSE](./LICENSE).
+
+## Local development
+
+Use Yarn when possible because the original project uses Yarn:
+
+```shell
+corepack enable
+yarn install
+yarn build
+yarn serve
+```
+
+Then open <http://localhost:8080/>.
+
+The npm flow is also supported:
+
+```shell
+npm install
+npm run build
+npm run serve
+```
+
+For active development, use:
+
+```shell
+yarn dev
+```
+
+## Testing
+
+If dependencies are installed, run:
+
+```shell
+yarn test
+```
+
+or:
+
+```shell
+npm run test
+```
+
+## GitHub Pages deployment
+
+This repository includes `.github/workflows/deploy.yml`.
+
+1. Push the project to GitHub.
+2. Open repository `Settings` -> `Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Open `Actions` and wait for `Deploy to GitHub Pages` to pass.
+
+The target repository name is assumed to be:
+
+```text
+Deploy-billiards-web-to-GitHub-Pages
+```
+
+After deployment, the default URL format is:
+
+```text
+https://<username>.github.io/Deploy-billiards-web-to-GitHub-Pages/
+```
+
+The Pages workflow builds with:
+
+```shell
+WEBPACK_PUBLIC_PATH=/Deploy-billiards-web-to-GitHub-Pages/ yarn build
+```
+
+For local builds, webpack uses `publicPath: "auto"` by default so `dist/` can be
+served directly from `http://localhost:8080/`.
+
+## Game entry points
+
+The default static entry is `dist/index.html`. It opens a playable Nine Ball game
+and includes a compact menu with:
+
+- Play Nine Ball
+- Play Snooker
+- Play Three Cushion
+- Physics Demo / Diagrams
+- Online modes marked as experimental
+
+Currently retained modes include:
+
+- Nine ball
+- Snooker
+- Three cushion
+- Fourteen-one and eight-ball rule entries from the original project
+- Physics and diagram demos under `dist/diagrams/`
+- Practice page under `dist/practice.html`
+
+## Controls
+
+- Arrow keys: aim
+- Ctrl + Arrow: fine aim
+- Up / Down: top spin and backspin
+- Shift + Left / Right: side spin
+- Space: hold and release to hit
+- Mouse or touch drag: aim where supported by the original controls
+- Cue ball control and power slider: spin and shot strength
+
+## Current limitations
+
+- Online multiplayer may require an external nchan/websocket server.
+- Some demos are experimental and inherited from the original project.
+- Physics is browser-oriented, not a professional commercial billiards engine.
+
+## Original README
+
 # billiards
 
 [![codecov](https://codecov.io/gh/tailuge/billiards/branch/master/graph/badge.svg?token=BH11KRAEL0)](https://codecov.io/gh/tailuge/billiards)
@@ -279,6 +408,5 @@ Star History
 ## Licence 
 
 This project is open source and licensed under the GNU General Public License - see the [LICENSE](LICENSE) file for details. Contributions welcome.
-
 
 
